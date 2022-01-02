@@ -42,19 +42,19 @@ export const categories = [
     id: 1,
     title: "Man",
     img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
-    category : 'man'
+    category: "man",
   },
   {
     id: 2,
     title: "Woman",
     img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
-    category : 'woman'
+    category: "woman",
   },
   {
     id: 3,
     title: "Children",
     img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
-    category : 'children'
+    category: "children",
   },
 ];
 
@@ -77,7 +77,6 @@ export const products = [
     img: "https://i.ibb.co/g7fCy8K/beautiful-white-girl-holding-shopping-bag-fashion-beauty-1150-13663.jpg",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe natus, labore odio, asperiores aperiam porro pariatur tenetur libero quam unde nemo placeat. Est qui ea, amet repudiandae et quae minus!",
   },
-  
 ];
 
 export const product = [
@@ -87,13 +86,12 @@ export const product = [
     img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
     price: 10,
     company: "Nike",
-    info:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe natus, labore odio, asperiores aperiam porro pariatur tenetur libero quam unde nemo placeat. Est qui ea, amet repudiandae et quae minus!",
+    info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe natus, labore odio, asperiores aperiam porro pariatur tenetur libero quam unde nemo placeat. Est qui ea, amet repudiandae et quae minus!",
     inCart: false,
     count: 0,
     total: 0,
-    category : "children",
-    rating: 4
+    category: "children",
+    rating: 4,
   },
   {
     _id: 2,
@@ -101,14 +99,12 @@ export const product = [
     img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
     price: 20,
     company: "Nike",
-    info:
-
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe natus, labore odio, asperiores aperiam porro pariatur tenetur libero quam unde nemo placeat. Est qui ea, amet repudiandae et quae minus!",
+    info: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe natus, labore odio, asperiores aperiam porro pariatur tenetur libero quam unde nemo placeat. Est qui ea, amet repudiandae et quae minus!",
     inCart: false,
     count: 0,
     total: 0,
-    category : "children",
-    rating: 2
+    category: "children",
+    rating: 2,
   },
   {
     _id: 3,
@@ -120,11 +116,10 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "children",
-    rating: 5.
+    category: "children",
+    rating: 5,
   },
   {
-
     _id: 4,
     title: "Shirt",
     img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
@@ -134,8 +129,8 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "man",
-    rating: 4.5
+    category: "man",
+    rating: 4.5,
   },
   {
     _id: 5,
@@ -147,8 +142,8 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "man",
-    rating: 4.5
+    category: "man",
+    rating: 4.5,
   },
   {
     _id: 6,
@@ -160,8 +155,8 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "man",
-    rating: 3.5
+    category: "man",
+    rating: 3.5,
   },
   {
     _id: 7,
@@ -174,8 +169,8 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "woman",
-    rating: 4
+    category: "woman",
+    rating: 4,
   },
   {
     _id: 8,
@@ -187,8 +182,8 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "woman",
-    rating: 4
+    category: "woman",
+    rating: 4,
   },
   {
     _id: 9,
@@ -200,8 +195,8 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "woman",
-    rating: 4
+    category: "woman",
+    rating: 4,
   },
   {
     _id: 10,
@@ -213,7 +208,113 @@ export const product = [
     inCart: false,
     count: 0,
     total: 0,
-    category : "woman",
-    rating: 4
+    category: "woman",
+    rating: 4,
   },
-]
+];
+
+export const users = [
+  {
+    _id: 1,
+    name: "Mr. hero",
+    email: "coder@gmail.com",
+  },
+  {
+    _id: 2,
+    name: "Mr. hero",
+    email: "coder@gmail.com",
+  },
+  {
+    _id: 3,
+    name: "Mr. hero",
+    email: "coder@gmail.com",
+  },
+  {
+    _id: 4,
+    name: "Mr. hero",
+    email: "coder@gmail.com",
+  },
+];
+export const admins = [
+  {
+    _id: 1,
+    name: "Mr. hero",
+    email: "coder@gmail.com",
+    role: "admin",
+  },
+  {
+    _id: 2,
+    name: "Mr. hero",
+    email: "coder@gmail.com",
+    role: "admin",
+  },
+];
+
+export const Orders = [
+  {
+    _id: 1,
+    title: "Shoes",
+    img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
+    price: 10,
+    email: "coder@gmail.com",
+    userImg: "https://i.ibb.co/80VgQMk/galib.png",
+    name: "Mr. hero",
+    country: "Egypt",
+    city: "Cairo",
+    address: "El-Nasr",
+    status: "pending",
+    phone: "0123456789",
+    count: 1,
+    total: 10,
+    date: "january 14, 2015",
+  },
+  {
+    _id: 2,
+    title: "Shoes",
+    img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
+    price: 7.5,
+    email: "coder@gmail.com",
+    userImg: "https://i.ibb.co/80VgQMk/galib.png",
+    name: "Mr. hero",
+    country: "Egypt",
+    city: "Cairo",
+    address: "El-Nasr",
+    status: "pending",
+    phone: "0123456789",
+    count: 5,
+    total: 10,
+    date: "january 14, 2015",
+  },
+  {
+    _id: 3,
+    title: "Shoes",
+    img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
+    price: 3.6,
+    email: "coder@gmail.com",
+    userImg: "https://i.ibb.co/80VgQMk/galib.png",
+    name: "Mr. hero",
+    country: "Egypt",
+    status: "pending",
+    city: "Cairo",
+    address: "El-Nasr",
+    phone: "0123456789",
+    count: 4,
+    date: "january 14, 2015",
+  },
+  {
+    _id: 4,
+    title: "Shoes",
+    img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
+    price: 5,
+    email: "coder@gmail.com",
+    userImg: "https://i.ibb.co/80VgQMk/galib.png",
+    name: "Mr. hero",
+    country: "Egypt",
+    city: "Cairo",
+    address: "El-Nasr",
+    status: "pending",
+    phone: "0123456789",
+    count: 2,
+    date: "january 14, 2015",
+  },
+];

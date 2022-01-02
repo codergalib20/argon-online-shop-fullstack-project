@@ -131,3 +131,17 @@
     display: none !important;
   }
 }
+
+.selectStyle {
+  width: "100% !important";
+  margin-bottom: "1rem !important";
+  border: "1px solid #fff !important";
+  border-radius: "5px !important";
+  padding: "0.5rem !important";
+  font-size: "1rem !important";
+  color: "#fff !important";
+  background-color: "#f5841a !important";
+}
+section:hover {
+  background-color: "#f584 !important";
+}
