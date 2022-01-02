@@ -16,6 +16,7 @@ const Users = ({ user }) => {
           boxShadow: "0px 0px 5px 5px rgba(0, 0, 0, 0.4)",
           py: 0,
           mb: "1rem",
+          borderRadius: "1rem",
         }}
       >
         <AccordionSummary

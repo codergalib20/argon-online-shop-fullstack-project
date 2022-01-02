@@ -14,8 +14,9 @@ export const useStyles = makeStyles({
     display: "flex !important",
     alignItems: "center !important",
     fontWeight: "bold !important",
-    border: "1px solid #fff !important",
+    // border: "1px solid #fff !important",
     marginTop: "0.2rem !important",
+    background: `linear-gradient(to right, rgba(255,255, 255, 0.1), rgba(255,255,2, 0.1)) !important`,
   },
   dashboardMenuIcon: {
     color: "#fff !important",
