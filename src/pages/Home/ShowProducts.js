@@ -10,7 +10,7 @@ const ShowProducts = () => {
   useEffect(() => {
     fetch("http://localhost:5000/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data?.slice(0,8)));
   }, []);
 
   // const filerProducts = product.filter()

@@ -145,3 +145,17 @@
 section:hover {
   background-color: "#f584 !important";
 }
+
+.cardImageStyle {
+  width: "100% !important";
+  height: "100% !important";
+  border-radius: "5px !important";
+  transform: scale(1);
+  transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -ms-transition: all 0.3s linear;
+}
+.cardImageStyle:hover {
+  transform: scale(1.1) rotate(5deg);
+}
