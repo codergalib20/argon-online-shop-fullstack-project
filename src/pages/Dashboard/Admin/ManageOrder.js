@@ -28,7 +28,7 @@ export default function ManageOrder({ cartItem }) {
   const { avatarBox } = useStyles();
 
   return (
-    <Grid item sx={12} md={6} lg={4}>
+    <Grid item xs={12} md={6} lg={4}>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={

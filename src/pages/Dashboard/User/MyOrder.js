@@ -9,26 +9,15 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import { red } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
-import { styled } from "@mui/material/styles";
 import * as React from "react";
 import { useStyles } from "../Styles";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 export default function MyOrder({ cartItem }) {
   const { avatarBox } = useStyles();
 
   return (
-    <Grid item sx={12} md={6} lg={4}>
+    <Grid item xs={12} md={6} lg={4}>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={

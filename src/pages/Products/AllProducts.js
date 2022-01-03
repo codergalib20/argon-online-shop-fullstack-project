@@ -3,6 +3,7 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import Header from "../../components/Header";
 import { product } from "../../fakeData/fakeData";
+import useAuth from "../../hooks/useAuth";
 import {
   Search,
   SearchIconWrapper,
@@ -16,6 +17,8 @@ const AllProducts = () => {
   const filterProducts = product.filter((product) =>
     product?.title.toLowerCase().includes(filterText.toLowerCase())
   );
+  const {user} = useAuth();
+  console.log(user.displayName);
   return (
     <Box>
       <Header />
@@ -39,7 +42,7 @@ const AllProducts = () => {
           {filterText
             ? filterProducts.length === 0 ? <Typography variant="h4" color="#f5841a">No Products Found</Typography> : filterProducts.map((product) => <AllProduct product={product} />)
             : search.map((product) => (
-                <AllProduct key={product.id} product={product} />
+                <AllProduct key={product._id} product={product} />
               ))}
         </Grid>
       </Container>

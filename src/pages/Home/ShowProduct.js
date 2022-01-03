@@ -2,9 +2,8 @@ import { Box, Grid, Paper, Rating, Typography } from "@mui/material";
 import React from "react";
 
 const ShowProduct = ({ product }) => {
-  console.log(product);
   return (
-    <Grid item sx={12} sm={6} md={4} lg={3}>
+    <Grid item xs={12} sm={6} md={4} lg={3}>
       <Paper sx={{ p: "20px" }}>
         <img style={{width: '100%'}} src={product?.img} alt={product?.title} />
         <Box sx={{ p: "10px" }}>
