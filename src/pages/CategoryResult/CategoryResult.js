@@ -16,7 +16,7 @@ const CategoryResult = ({ product }) => {
           <span>${product.price}</span> <span>{product.category}</span>
         </Typography>
         <Typography className={cardCardsInfo} variant="body2">
-          {product.price} {product?.info.slice(0, 80)}...
+          {product.price} {product?.des.slice(0, 80)}...
         </Typography>
       </Box>
     </Grid>

@@ -41,19 +41,19 @@ export const categories = [
   {
     id: 1,
     title: "Man",
-    img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
+    img: "https://i.ibb.co/jgP04j9/pexels-photo-1043474.jpg",
     category: "man",
   },
   {
     id: 2,
     title: "Woman",
-    img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
+    img: "https://i.ibb.co/vBhbQJb/Screenshot-146.png",
     category: "woman",
   },
   {
     id: 3,
     title: "Children",
-    img: "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
+    img: "https://i.ibb.co/qYK5h41/Kids-Garment-Stock-Children-Flower-Gown-Child-Clothing-Party-Wear-Party-Wear-Dresses-Children-s-Appa.jpg",
     category: "children",
   },
 ];
