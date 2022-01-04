@@ -6,8 +6,41 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import swal from "sweetalert";
 
-const Admins = ({ admin }) => {
+const Admins = ({ admin, admins, setAdmins }) => {
+
+  const deleteAdmins = (id) => {
+    swal({
+      title: "Are you sure for deleting?",
+      text: "Once deleted, you will not be able to recover this user data",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`https://blooming-plains-44019.herokuapp.com/users/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const remaining = admins.filter(
+              (service) => service._id !== id
+            );
+            setAdmins(remaining);
+          });
+        swal("Poof! Your users has been deleted! from user list", {
+          icon: "success",
+        });
+      } else {
+        swal("Your user data is safe!");
+      }
+    });
+  };
+
+
+
+  
   return (
     <div>
       <Accordion
@@ -25,14 +58,14 @@ const Admins = ({ admin }) => {
           sx={{ background: "#f5841a" }}
         >
           <Typography variant="h6" fontWeight="600">
-            {admin?.name}
+            {admin?.displayName}
           </Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ background: "#1f155e", color: "#fff" }}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={4}>
               <Typography variant="h6" fontWeight="400">
-                {admin?.name}
+                {admin?.displayName}
               </Typography>
             </Grid>
             <Grid item xs={12} md={4}>
@@ -41,7 +74,7 @@ const Admins = ({ admin }) => {
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} sx={{ textAlign: "right" }}>
-              <Typography variant="h6" fontWeight="400">
+              <Typography onClick={()=>deleteAdmins(admin?._id)} variant="h6" fontWeight="400">
                 <DeleteForeverIcon />
               </Typography>
             </Grid>

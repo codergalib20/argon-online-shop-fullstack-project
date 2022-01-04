@@ -9,17 +9,19 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import { useStyles } from "../../styles/Styles";
+
 const Login = () => {
+  const history = useHistory();
+  const location = useLocation();
   const { userCollectionsFormPage, userCollectionsForm, outlineButton } =
     useStyles();
-  const {
-    register,
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
+  const { loginUser } = useAuth();
   const onSubmit = (data) => {
-    console.log(data);
+      loginUser(data.email, data.password, history,location);
   };
   return (
     <Box className={userCollectionsFormPage}>
@@ -29,7 +31,11 @@ const Login = () => {
           spacing={3}
           sx={{ minHeight: "105vh", alignItems: "center" }}
         >
-          <Grid item xs={{display:{sx:"none", md:"block"}}} md={6}></Grid>
+          <Grid
+            item
+            xs={{ display: { sx: "none", md: "block" } }}
+            md={6}
+          ></Grid>
           <Grid item xs={12} md={6}>
             <Paper className={userCollectionsForm}>
               <Typography
@@ -60,26 +66,28 @@ const Login = () => {
                   label="Password"
                   variant="filled"
                 />
-               <Box sx={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-               <Button
-                  variant="contained"
-                  type="submit"
-                  color="primary"
-                  sx={{ mt: "10px" }}
-                  className={outlineButton}
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
                 >
-                  Login
-                </Button>
-                <Link to="/register">
                   <Button
-                    color="warning"
-                    size="small"
+                    variant="contained"
+                    type="submit"
+                    color="primary"
                     sx={{ mt: "10px" }}
+                    className={outlineButton}
                   >
-                    Are you a new user?
+                    Login
                   </Button>
-                </Link>
-               </Box>
+                  <Link to="/register">
+                    <Button color="warning" size="small" sx={{ mt: "10px" }}>
+                      Are you a new user?
+                    </Button>
+                  </Link>
+                </Box>
               </form>
             </Paper>
           </Grid>

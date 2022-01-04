@@ -1,15 +1,15 @@
 import { Button, TextField } from "@mui/material";
 import React from "react";
-import { useForm } from "react-hook-form";
+import useAuth from "../../hooks/useAuth";
 import { useStyles } from "../../styles/Styles";
 
-const CartModalForm = () => {
+
+const CartModalForm = ({handleSubmit, onSubmit, register}) => {
+  const { user } = useAuth();
   const { outlineButton } = useStyles();
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
 
   return (
-    <div style={{padding: '20px 0'}}>
+    <div style={{ padding: "20px 0" }}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           fullWidth
@@ -18,9 +18,11 @@ const CartModalForm = () => {
           {...register("name", { required: true })}
           label="Full Name"
           variant="filled"
+          defaultValue={user?.displayName}
         />
         <TextField
           fullWidth
+          defaultValue={user?.email}
           sx={{ marginBottom: 1 }}
           id="filled-basic"
           {...register("email", { required: true })}

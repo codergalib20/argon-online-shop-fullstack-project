@@ -11,7 +11,7 @@ const CategoryResults = () => {
     (product) => product.category === categoriesPage
   );
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://blooming-plains-44019.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

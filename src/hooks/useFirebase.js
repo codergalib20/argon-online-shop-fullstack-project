@@ -29,7 +29,7 @@ export default function useFirebase() {
         swal("Good job!", "User create successfully", "success");
         const newUser = { email, displayName: name };
         setUser(newUser);
-        // saveUser(email, name);
+        saveUser(email, name);
         history.replace("/home");
         updateProfile(auth.currentUser, {
           displayName: name,
@@ -72,27 +72,27 @@ export default function useFirebase() {
     return () => subscribe;
   }, [auth]);
 
-  // useEffect(() => {
-  //   fetch(`https://fierce-meadow-56103.herokuapp.com/users/${user.email}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setAdmin(data.admin))
-  //     .catch((err) => console.log(err));
-  // }, [user]);
+  useEffect(() => {
+    fetch(`https://blooming-plains-44019.herokuapp.com/users/${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setAdmin(data.admin))
+      .catch((err) => console.log(err));
+  }, [user]);
 
   // ____Create User Save Database+++++++++
-  // const data = new Date();
-  // const saveUser = (email, displayName) => {
-  //   const newUser = { email, displayName, createdAt: data.toString() };
-  //   fetch("https://fierce-meadow-56103.herokuapp.com/users", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(newUser),
-  //   })
-  //     .then((res) => res.json())
-  //     .catch((err) => console.log(err));
-  // };
+  const data = new Date();
+  const saveUser = (email, displayName) => {
+    const newUser = { email, displayName, createdAt: data.toString() };
+    fetch("https://blooming-plains-44019.herokuapp.com/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  };
 
   const logOutUser = () => {
     setIsLoading(true);

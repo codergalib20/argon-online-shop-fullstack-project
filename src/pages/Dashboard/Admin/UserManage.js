@@ -7,7 +7,6 @@ import Tabs from "@mui/material/Tabs";
 import Typography from "@mui/material/Typography";
 import PropTypes from "prop-types";
 import * as React from "react";
-import { admins, users } from "../../../fakeData/fakeData";
 import Admins from "./Admins";
 import Users from "./Users";
 function TabPanel(props) {
@@ -46,6 +45,22 @@ function a11yProps(index) {
 export default function UserManage() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
+  const [admins, setAdmins] = React.useState([])
+  React.useEffect(()=>{
+    fetch('https://blooming-plains-44019.herokuapp.com/user/admin')
+    .then(res => res.json())
+    .then(data => {
+      setAdmins(data)
+    })
+  },[])
+  const [users, setUsers] = React.useState([])
+  React.useEffect(()=>{
+    fetch('https://blooming-plains-44019.herokuapp.com/users')
+    .then(res => res.json())
+    .then(data => {
+      setUsers(data)
+    })
+  },[])
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -82,12 +97,12 @@ export default function UserManage() {
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             {users.map((user) => (
-              <Users key={user?._id} user={user} />
+              <Users key={user?._id} user={user} users={users} setUsers={setUsers} />
             ))}
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
             {admins.map((admin) => (
-              <Admins key={admin?._id} admin={admin} />
+              <Admins key={admin?._id} admin={admin} admins={admins} setAdmins={setAdmins}/>
             ))}
           </TabPanel>
         </Box>

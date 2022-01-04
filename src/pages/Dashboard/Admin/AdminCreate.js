@@ -2,6 +2,7 @@ import { Box, Button, Container, TextField, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React from "react";
 import { useForm } from "react-hook-form";
+import swal from "sweetalert";
 import AdminImage from "../../../assets/adminImage.png";
 import { useStyles } from "../../../styles/Styles";
 
@@ -18,10 +19,26 @@ const AdminCreate = () => {
     },
   });
   const { createAdminContentBox } = stylesheet();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    fetch("https://blooming-plains-44019.herokuapp.com/users/admin/", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount === 0) {
+          swal("Something wrong please try another id", "", "error");
+        } else {
+          swal("Success", "Admin Create", "success");
+        }
+      });
+      reset();
   };
+
   return (
     <div>
       <Container
@@ -58,6 +75,7 @@ const AdminCreate = () => {
               className={outlineButton}
               variant="contained"
               color="primary"
+              type="submit"
               sx={{ mt: 2 }}
             >
               Create

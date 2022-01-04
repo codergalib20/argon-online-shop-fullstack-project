@@ -15,9 +15,11 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import AppLogo from "../assets/logo.png";
+import useAuth from "../hooks/useAuth";
 import { useStyles } from "../styles/Styles";
 // Start Main Function Work___________
 export default function Header() {
+  const { user, logOutUser } = useAuth();
   const { headerAppBar, appBarLogo, badgeMenuIcon } = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -139,9 +141,22 @@ export default function Header() {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to="/dashboard">
-              <Button variant="text">Dashboard</Button>
-            </Link>
+            {user.email ? (
+              <Box>
+                <Button variant="text" onClick={logOutUser}>
+                  Logout
+                </Button>
+                <Link to="/dashboard">
+                  <Button variant="text">Dashboard</Button>
+                </Link>
+              </Box>
+            ) : (
+              <Box>
+                <Link to="/login">
+                  <Button variant="text">Login</Button>
+                </Link>
+              </Box>
+            )}
             <IconButton
               size="large"
               aria-label="show 4 new mails"

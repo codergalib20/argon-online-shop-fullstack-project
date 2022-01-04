@@ -4,9 +4,12 @@ import Box from "@mui/material/Box";
 import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import swal from 'sweetalert';
 import { useStyles } from "../../styles/Styles";
 import CartModalForm from "./CartModalForm";
 import CounterPrice from "./CounterPrice";
+
 
 const style = {
   position: "absolute",
@@ -31,6 +34,38 @@ export default function CartModal({
   const { modalFad, modalParenMain, modalCloseButton } = useStyles();
   const [count, setCount] = useState(1);
   const [disabledButton, setDisabledButton] = useState(false);
+  const { register, handleSubmit,reset } = useForm();
+  const totalPrice = count * singleProduct.price;
+  const [toDate, setToDate] = useState(new Date());
+  const onSubmit = (data) => {
+    data.date = toDate;
+    data.count = count;
+    data.price = totalPrice;
+    data.product = singleProduct;
+    data.status = "cart"
+    // console.log(data);
+    fetch("https://blooming-plains-44019.herokuapp.com/cart", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.insertedId) {
+          handleClose();
+          swal("Complete", "Product added to cart!", "success");
+        }
+      })
+      .catch((err) => console.log(err));
+    // reset Form___
+    reset();
+  };
+
+
+
+
   useEffect(() => {
     if (count === 1) {
       setDisabledButton(true);
@@ -38,7 +73,6 @@ export default function CartModal({
       setDisabledButton(false);
     }
   }, [count]);
-  const totalPrice = count * singleProduct.price;
   return (
     <div>
       <Modal
@@ -67,7 +101,7 @@ export default function CartModal({
               />
             </Box>
             <Box>
-              <CartModalForm />
+              <CartModalForm register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} />
             </Box>
           </Box>
         </Fade>

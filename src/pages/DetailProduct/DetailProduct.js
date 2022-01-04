@@ -7,26 +7,31 @@ import {
   Rating,
   Typography
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { useStyles } from "../../styles/Styles";
 import CartModal from "./CartModal";
-const singleProduct = {
-  id: 1,
-  name: "Product 1",
-  price: 3.5,
-  description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  image:
-    "https://i.ibb.co/bbj4817/Front-of-a-clean-Black-T-Shirt-just-waiting-for-you-to-add-your-own-logo-Graphics-or-words-Clipping.jpg",
-  rating: 4.5,
-  category: "children",
-};
+
 const DetailProduct = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { outlineButton } = useStyles();
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch('https://blooming-plains-44019.herokuapp.com/products')
+    .then(res => res.json())
+    .then(data => setProducts(data))
+  },[])
+  const params = useParams();
+  const product = products.find(p => p._id === params.id);
+  console.log(product)
+
+
+
+
+  
   return (
     <Box>
       <Header />
@@ -34,11 +39,11 @@ const DetailProduct = () => {
         <Container>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={5}>
-              <img style={{ width: "100%" }} src={singleProduct.image} alt="" />
+              <img style={{ width: "100%" }} src={product?.img} alt="" />
             </Grid>
             <Grid item xs={12} sm={7}>
               <Typography color="#444" fontWeight="700" variant="h4">
-                {singleProduct.name}
+                {product.name}
               </Typography>
               <Box
                 sx={{
@@ -49,11 +54,11 @@ const DetailProduct = () => {
                 }}
               >
                 <Typography color="#444" variant="h5">
-                  ${singleProduct.price}
+                  ${product.price}
                 </Typography>
                 <Rating
                   name="half-rating-read"
-                  defaultValue={singleProduct?.rating}
+                  defaultValue={product?.star}
                   precision={0.5}
                   readOnly
                 />
@@ -63,7 +68,7 @@ const DetailProduct = () => {
                 color="#555"
                 variant="body2"
               >
-                {singleProduct.description}
+                {product.description}
               </Typography>
               <br />
               <Typography
@@ -71,7 +76,7 @@ const DetailProduct = () => {
                 color="#555"
                 variant="body2"
               >
-                {singleProduct.description}
+                {product.description}
               </Typography>
               <Button
                 onClick={handleOpen}
@@ -87,7 +92,7 @@ const DetailProduct = () => {
           </Grid>
         </Container>
         <CartModal
-          singleProduct={singleProduct}
+          singleProduct={product}
           handleClose={handleClose}
           handleOpen={handleOpen}
           setOpen={setOpen}
