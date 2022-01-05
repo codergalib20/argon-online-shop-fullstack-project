@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, useRouteMatch } from "react-router-dom";
+import AdminRoute from '../Login/Private/AdminRoute';
 import AddProduct from "./Admin/AddProduct";
 import AdminCreate from "./Admin/AdminCreate";
 import ManageProduct from "./Admin/ManageProduct";
@@ -11,7 +12,6 @@ import AllCart from "./User/AllCart";
 import Favorite from "./User/Favorite";
 import MyOrders from "./User/MyOrders";
 import SendMessage from "./User/SendMessage";
-
 const Pages = () => {
   let { path, url } = useRouteMatch();
   return (
@@ -19,15 +19,15 @@ const Pages = () => {
       <Route exact path={`${path}`}>
         <Dashboard />
       </Route>
-      <Route path={`${path}/productManage`}>
+      <AdminRoute path={`${path}/productManage`}>
         <ManageProduct />
-      </Route>
-      <Route path={`${path}/addProduct`}>
+      </AdminRoute>
+      <AdminRoute path={`${path}/addProduct`}>
         <AddProduct />
-      </Route>
-      <Route path={`${path}/usersManage`}>
+      </AdminRoute>
+      <AdminRoute path={`${path}/usersManage`}>
         <UserManage />
-      </Route>
+      </AdminRoute>
       <Route path={`${path}/allCart`}>
         <AllCart />
       </Route>
@@ -40,15 +40,15 @@ const Pages = () => {
       <Route path={`${path}/sendMessage`}>
         <SendMessage />
       </Route>
-      <Route path={`${path}/message`}>
+      <AdminRoute path={`${path}/message`}>
         <Message />
-      </Route>
-      <Route path={`${path}/adminCreate`}>
+      </AdminRoute>
+      <AdminRoute path={`${path}/adminCreate`}>
         <AdminCreate />
-      </Route>
-      <Route path={`${path}/orderManage`}>
+      </AdminRoute>
+      <AdminRoute path={`${path}/orderManage`}>
         <OrderManage />
-      </Route>
+      </AdminRoute>
     </>
   );
 };

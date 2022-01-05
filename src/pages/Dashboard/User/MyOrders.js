@@ -1,14 +1,21 @@
 import { Container, Grid } from "@mui/material";
-import React from "react";
-import { Orders } from "../../../fakeData/fakeData";
+import React, { useEffect, useState } from "react";
 import MyOrder from "./MyOrder";
-const MyOrders = () => {
+
+
+const AllCart = () => {
+  const [carts, setCarts] = useState([]);
+  useEffect(()=>{
+    fetch("http://localhost:5000/orderCollections")
+    .then(res=>res.json())
+    .then(data=>setCarts(data))
+  },[])
   return (
     <div>
       <Container>
         <Grid container spacing={3}>
-          {Orders.map((cartItem) => (
-            <MyOrder cartItem={cartItem} />
+          {carts.map((cartItem) => (
+            <MyOrder cartItem={cartItem} carts={carts} setCarts={setCarts} />
           ))}
         </Grid>
       </Container>
@@ -16,4 +23,4 @@ const MyOrders = () => {
   );
 };
 
-export default MyOrders;
+export default AllCart;

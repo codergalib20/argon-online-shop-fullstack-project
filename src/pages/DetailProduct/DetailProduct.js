@@ -12,26 +12,20 @@ import { useParams } from "react-router-dom";
 import Header from "../../components/Header";
 import { useStyles } from "../../styles/Styles";
 import CartModal from "./CartModal";
-
 const DetailProduct = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const { outlineButton } = useStyles();
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState({});
+  const {id} = useParams();
   useEffect(() => {
-    fetch('https://blooming-plains-44019.herokuapp.com/products')
-    .then(res => res.json())
-    .then(data => setProducts(data))
-  },[])
-  const params = useParams();
-  const product = products.find(p => p._id === params.id);
-  console.log(product)
-
-
-
-
-  
+    fetch(`https://blooming-plains-44019.herokuapp.com/products/${id}`)
+      .then(res => res.json())
+      .then(data => setProduct(data));
+  },[id])
+  console.log(typeof product.star);
+  const rating = product.star;
   return (
     <Box>
       <Header />

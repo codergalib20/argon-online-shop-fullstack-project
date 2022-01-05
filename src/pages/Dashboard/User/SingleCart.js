@@ -25,7 +25,7 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`https://blooming-plains-44019.herokuapp.com/cartCollection/${id}`, {
+        fetch(`http://localhost:5000/cartDel/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -38,6 +38,32 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
         });
       } else {
         swal("User data is safe!");
+      }
+    });
+  }
+
+  const orderConfirm = (id) => {
+    swal({
+      title: "Are you sure for Order Confirm?",
+      text: "One delete will be permanent",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/cartOrder/${id}`, {
+          method: "PUT",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const remaining = carts.filter((cart) => cart._id !== id);
+            setCarts(remaining);
+          });
+        swal("Poof! Product Order confirm success", {
+          icon: "success",
+        });
+      } else {
+        swal("Cart product Product not Order confirm");
       }
     });
   }
@@ -58,7 +84,7 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
           title={cartItem?.name}
           subheader={cartItem?.date}
         />
-        <CardMedia component="img" image={cartItem.product.image} alt="Paella dish" />
+        <CardMedia component="img" image={cartItem.product.img} alt="Paella dish" />
         <CardActions
           sx={{
             display: "flex",
@@ -67,14 +93,14 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
           }}
         >
           <Button sx={{ fontSize: "1.2rem" }} variant="text">
-            ${cartItem?.totalPrice}
+            ${cartItem?.price}
           </Button>
           <Button sx={{ fontSize: "1.2rem" }} variant="text">
             Count - {cartItem?.count}
           </Button>
         </CardActions>
         <CardActions>
-          <IconButton>
+          <IconButton onClick={()=>orderConfirm(cartItem?._id)}>
             <RotateRightIcon />
           </IconButton>
           <IconButton onClick={()=>deleteCartItem(cartItem?._id)}>

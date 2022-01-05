@@ -13,7 +13,6 @@ import { Box, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import React from "react";
 import { NavLink, useRouteMatch } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-import AdminRoute from "../Login/Private/AdminRoute";
 import { useStyles } from "./Styles";
 const Menus = () => {
   const { navlinkActiveStyle } = useStyles();
@@ -55,15 +54,15 @@ const Menus = () => {
 
       {admin ? (
         <Box>
-          <AdminRoute style={{ color: "#fff" }} to={`${url}/productManage`}>
+          <NavLink style={{ color: "#fff" }} to={`${url}/productManage`}>
             <ListItem button className={dashboardMenuItem}>
               <ListItemIcon className={dashboardMenuIcon}>
                 <PrecisionManufacturingOutlinedIcon />
               </ListItemIcon>
               <ListItemText>Products manage</ListItemText>
             </ListItem>
-          </AdminRoute>
-          <AdminRoute
+          </NavLink>
+          <NavLink
             style={{ color: "#fff" }}
             activeClassName={navlinkActiveStyle}
             to={`${url}/addProduct`}
@@ -74,39 +73,39 @@ const Menus = () => {
               </ListItemIcon>
               <ListItemText>Add Product</ListItemText>
             </ListItem>
-          </AdminRoute>
-          <AdminRoute style={{ color: "#fff" }} to={`${url}/usersManage`}>
+          </NavLink>
+          <NavLink style={{ color: "#fff" }} to={`${url}/usersManage`}>
             <ListItem button className={dashboardMenuItem}>
               <ListItemIcon className={dashboardMenuIcon}>
                 <ManageAccountsOutlinedIcon />
               </ListItemIcon>
               <ListItemText>User Mange</ListItemText>
             </ListItem>
-          </AdminRoute>
-          <AdminRoute style={{ color: "#fff" }} to={`${url}/orderManage`}>
+          </NavLink>
+          <NavLink style={{ color: "#fff" }} to={`${url}/orderManage`}>
             <ListItem button className={dashboardMenuItem}>
               <ListItemIcon className={dashboardMenuIcon}>
                 <BorderColorOutlinedIcon />
               </ListItemIcon>
               <ListItemText>Orders Mange</ListItemText>
             </ListItem>
-          </AdminRoute>
-          <AdminRoute style={{ color: "#fff" }} to={`${url}/adminCreate`}>
+          </NavLink>
+          <NavLink style={{ color: "#fff" }} to={`${url}/adminCreate`}>
             <ListItem button className={dashboardMenuItem}>
               <ListItemIcon className={dashboardMenuIcon}>
                 <PersonAddAltOutlinedIcon />
               </ListItemIcon>
               <ListItemText>Admin Create</ListItemText>
             </ListItem>
-          </AdminRoute>
-          <AdminRoute style={{ color: "#fff" }} to={`${url}/message`}>
+          </NavLink>
+          <NavLink style={{ color: "#fff" }} to={`${url}/message`}>
             <ListItem button className={dashboardMenuItem}>
               <ListItemIcon className={dashboardMenuIcon}>
                 <CommentOutlinedIcon />
               </ListItemIcon>
               <ListItemText>Message</ListItemText>
             </ListItem>
-          </AdminRoute>
+          </NavLink>
         </Box>
       ) : (
         <Box>

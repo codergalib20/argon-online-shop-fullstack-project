@@ -1,7 +1,6 @@
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import SyncProblemIcon from "@mui/icons-material/SyncProblem";
-import { Button, Grid } from "@mui/material";
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import { Button, Grid, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -10,11 +9,64 @@ import CardMedia from "@mui/material/CardMedia";
 import { red } from "@mui/material/colors";
 import IconButton from "@mui/material/IconButton";
 import * as React from "react";
+import swal from "sweetalert";
 import { useStyles } from "../Styles";
 
-
-export default function MyOrder({ cartItem }) {
+export default function SingleCart({ cartItem,carts, setCarts }) {
   const { avatarBox } = useStyles();
+  console.log(cartItem);
+  // Delete Cart Item
+  const deleteCartItem = (id) => {
+    swal({
+      title: "Are you sure for delete?",
+      text: "Once deleted, you will not be able to recover this user data",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/cartDel/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const remaining = carts.filter((cart) => cart._id !== id);
+            setCarts(remaining);
+          });
+        swal("Poof! Users has been deleted! from user list", {
+          icon: "success",
+        });
+      } else {
+        swal("User data is safe!");
+      }
+    });
+  }
+
+  const orderConfirm = (id) => {
+    swal({
+      title: "Are you sure for Order Confirm?",
+      text: "One delete will be permanent",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(`http://localhost:5000/cartOrder/${id}`, {
+          method: "PUT",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            const remaining = carts.filter((cart) => cart._id !== id);
+            setCarts(remaining);
+          });
+        swal("Poof! Product Order confirm success", {
+          icon: "success",
+        });
+      } else {
+        swal("Cart product Product not Order confirm");
+      }
+    });
+  }
 
   return (
     <Grid item xs={12} md={6} lg={4}>
@@ -26,17 +78,13 @@ export default function MyOrder({ cartItem }) {
               sx={{ bgcolor: red[500] }}
               aria-label="recipe"
             >
-              <img
-                style={{ maxWidth: "100%" }}
-                src={cartItem?.userImg}
-                alt=""
-              />
+              <Typography variant="h5">{cartItem.name[0]}</Typography>
             </Avatar>
           }
           title={cartItem?.name}
           subheader={cartItem?.date}
         />
-        <CardMedia component="img" image={cartItem?.img} alt="Paella dish" />
+        <CardMedia component="img" image={cartItem.product.img} alt="Paella dish" />
         <CardActions
           sx={{
             display: "flex",
@@ -52,14 +100,10 @@ export default function MyOrder({ cartItem }) {
           </Button>
         </CardActions>
         <CardActions>
-          <IconButton>
-            {cartItem?.status === "pending" ? (
-              <SyncProblemIcon />
-            ) : (
-              <CheckCircleOutlineIcon />
-            )}
+          <IconButton onClick={()=>orderConfirm(cartItem?._id)}>
+            <RotateRightIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={()=>deleteCartItem(cartItem?._id)}>
             <DeleteForeverIcon />
           </IconButton>
         </CardActions>

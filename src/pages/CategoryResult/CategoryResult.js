@@ -1,11 +1,12 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { useStyles } from "../../styles/Styles";
 const CategoryResult = ({ product }) => {
   const { cardCardsInfo, singleProductCard } = useStyles();
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} sx={{ mt: "0.1rem" }}>
-      <Box className={singleProductCard} sx={{ cursor: "pointer" }}>
+      <Link to={`/product/${product?.key}`}><Box className={singleProductCard} sx={{ cursor: "pointer" }}>
         <Box sx={{ overflow: "hidden", py: "1rem" }}>
           <img style={{ width: "100%" }} src={product.img} alt="product" />
         </Box>
@@ -18,7 +19,7 @@ const CategoryResult = ({ product }) => {
         <Typography className={cardCardsInfo} variant="body2">
           {product.price} {product?.des.slice(0, 80)}...
         </Typography>
-      </Box>
+      </Box></Link>
     </Grid>
   );
 };

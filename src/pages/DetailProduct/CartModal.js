@@ -5,11 +5,10 @@ import Fade from "@mui/material/Fade";
 import Modal from "@mui/material/Modal";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import swal from 'sweetalert';
+import swal from "sweetalert";
 import { useStyles } from "../../styles/Styles";
 import CartModalForm from "./CartModalForm";
 import CounterPrice from "./CounterPrice";
-
 
 const style = {
   position: "absolute",
@@ -18,7 +17,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "80% !important",
   maxWidth: "500px !important",
-  padding: '0 100px',
+  padding: "0 100px",
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -34,15 +33,16 @@ export default function CartModal({
   const { modalFad, modalParenMain, modalCloseButton } = useStyles();
   const [count, setCount] = useState(1);
   const [disabledButton, setDisabledButton] = useState(false);
-  const { register, handleSubmit,reset } = useForm();
-  const totalPrice = count * singleProduct.price;
+  const { register, handleSubmit, reset } = useForm();
+  const priceNumber = count * singleProduct.price;
+  const totalPrice = priceNumber.toFixed(2);
   const [toDate, setToDate] = useState(new Date());
   const onSubmit = (data) => {
     data.date = toDate;
     data.count = count;
     data.price = totalPrice;
     data.product = singleProduct;
-    data.status = "cart"
+    data.status = "cart";
     // console.log(data);
     fetch("https://blooming-plains-44019.herokuapp.com/cart", {
       method: "POST",
@@ -62,9 +62,6 @@ export default function CartModal({
     // reset Form___
     reset();
   };
-
-
-
 
   useEffect(() => {
     if (count === 1) {
@@ -101,7 +98,11 @@ export default function CartModal({
               />
             </Box>
             <Box>
-              <CartModalForm register={register} handleSubmit={handleSubmit} onSubmit={onSubmit} />
+              <CartModalForm
+                register={register}
+                handleSubmit={handleSubmit}
+                onSubmit={onSubmit}
+              />
             </Box>
           </Box>
         </Fade>

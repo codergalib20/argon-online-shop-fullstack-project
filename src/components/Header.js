@@ -129,7 +129,7 @@ export default function Header() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar className={headerAppBar} position="static">
+      <AppBar className={headerAppBar} sx={{background: '#fff'}} position="static">
         <Toolbar>
           <Typography
             noWrap
@@ -138,7 +138,6 @@ export default function Header() {
           >
             <img className={appBarLogo} src={AppLogo} alt="" />
           </Typography>
-
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {user.email ? (
