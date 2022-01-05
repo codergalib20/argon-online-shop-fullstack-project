@@ -25,7 +25,7 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/cartDel/${id}`, {
+        fetch(`https://blooming-plains-44019.herokuapp.com/cartDel/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -51,7 +51,7 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/cartOrder/${id}`, {
+        fetch(`https://blooming-plains-44019.herokuapp.com/cartOrder/${id}`, {
           method: "PUT",
         })
           .then((res) => res.json())

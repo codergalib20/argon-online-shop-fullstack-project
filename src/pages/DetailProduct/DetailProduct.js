@@ -18,12 +18,12 @@ const DetailProduct = () => {
   const handleClose = () => setOpen(false);
   const { outlineButton } = useStyles();
   const [product, setProduct] = useState({});
-  const {id} = useParams();
+  const { id } = useParams();
   useEffect(() => {
     fetch(`https://blooming-plains-44019.herokuapp.com/products/${id}`)
-      .then(res => res.json())
-      .then(data => setProduct(data));
-  },[id])
+      .then((res) => res.json())
+      .then((data) => setProduct(data));
+  }, [id]);
   console.log(typeof product.star);
   const rating = product.star;
   return (
@@ -62,7 +62,7 @@ const DetailProduct = () => {
                 color="#555"
                 variant="body2"
               >
-                {product.description}
+                {product.des}
               </Typography>
               <br />
               <Typography
@@ -70,7 +70,7 @@ const DetailProduct = () => {
                 color="#555"
                 variant="body2"
               >
-                {product.description}
+                {product.des2}
               </Typography>
               <Button
                 onClick={handleOpen}

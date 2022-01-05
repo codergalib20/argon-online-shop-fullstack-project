@@ -5,14 +5,14 @@ import ShowProduct from "./ShowProduct";
 
 const ShowProducts = () => {
   const { outlineButton, featuresButtons } = useStyles();
-  const [selectProduct, setSelectProduct] = useState("woman");
+  const [selectProduct, setSelectProduct] = useState("man");
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch("https://blooming-plains-44019.herokuapp.com/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data?.slice(0,8)));
+      .then((data) => setProducts(data));
   }, []);
-
+   console.log(products);
   // const filerProducts = product.filter()
   const filteringProduct = products.filter(
     (pro) => pro.category === selectProduct
@@ -58,7 +58,7 @@ const ShowProducts = () => {
       </Container>
       <Container sx={{ py: "10px" }}>
         <Grid container spacing={3}>
-          {filteringProduct.map((pro) => (
+          {filteringProduct?.slice(0, 8).map((pro) => (
             <ShowProduct key={pro._id} product={pro} />
           ))}
         </Grid>

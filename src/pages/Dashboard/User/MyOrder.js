@@ -1,5 +1,4 @@
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import RotateRightIcon from "@mui/icons-material/RotateRight";
 import { Button, Grid, Typography } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
@@ -19,13 +18,13 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
   const deleteCartItem = (id) => {
     swal({
       title: "Are you sure for delete?",
-      text: "Once deleted, you will not be able to recover this user data",
+      text: "Once deleted, you will not be able to recover this Order Product!",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
-        fetch(`http://localhost:5000/cartDel/${id}`, {
+        fetch(`https://blooming-plains-44019.herokuapp.com/cartDel/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -33,40 +32,15 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
             const remaining = carts.filter((cart) => cart._id !== id);
             setCarts(remaining);
           });
-        swal("Poof! Users has been deleted! from user list", {
+        swal("Poof! Order delete success", {
           icon: "success",
         });
       } else {
-        swal("User data is safe!");
+        swal("Order data is safe!");
       }
     });
-  }
+  };
 
-  const orderConfirm = (id) => {
-    swal({
-      title: "Are you sure for Order Confirm?",
-      text: "One delete will be permanent",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then((willDelete) => {
-      if (willDelete) {
-        fetch(`http://localhost:5000/cartOrder/${id}`, {
-          method: "PUT",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            const remaining = carts.filter((cart) => cart._id !== id);
-            setCarts(remaining);
-          });
-        swal("Poof! Product Order confirm success", {
-          icon: "success",
-        });
-      } else {
-        swal("Cart product Product not Order confirm");
-      }
-    });
-  }
 
   return (
     <Grid item xs={12} md={6} lg={4}>
@@ -100,9 +74,6 @@ export default function SingleCart({ cartItem,carts, setCarts }) {
           </Button>
         </CardActions>
         <CardActions>
-          <IconButton onClick={()=>orderConfirm(cartItem?._id)}>
-            <RotateRightIcon />
-          </IconButton>
           <IconButton onClick={()=>deleteCartItem(cartItem?._id)}>
             <DeleteForeverIcon />
           </IconButton>

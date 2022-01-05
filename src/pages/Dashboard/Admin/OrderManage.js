@@ -1,14 +1,21 @@
 import { Container, Grid } from "@mui/material";
-import React from "react";
-import { Orders } from "../../../fakeData/fakeData";
+import React, { useEffect, useState } from "react";
 import ManageOrder from "./ManageOrder";
-const OrderManage = () => {
+
+
+const AllCart = () => {
+  const [carts, setCarts] = useState([]);
+  useEffect(()=>{
+    fetch("https://blooming-plains-44019.herokuapp.com/orderCollections")
+    .then(res=>res.json())
+    .then(data=>setCarts(data))
+  },[])
   return (
     <div>
       <Container>
         <Grid container spacing={3}>
-          {Orders.map((cartItem) => (
-            <ManageOrder cartItem={cartItem} />
+          {carts.map((cartItem) => (
+            <ManageOrder cartItem={cartItem} carts={carts} setCarts={setCarts} />
           ))}
         </Grid>
       </Container>
@@ -16,4 +23,4 @@ const OrderManage = () => {
   );
 };
 
-export default OrderManage;
+export default AllCart;

@@ -23,9 +23,11 @@ const Slider = () => {
           <Grid container spacing={3}>
             <Grid item xs={12} lg={8}>
               <h1>Welcome to Arong online market</h1>
+              {/* <Link to="/allProducts"> */}
               <Button className={outlineButton} variant="contained">
                 More Product
               </Button>
+              {/* </Link> */}
             </Grid>
             <Grid item sx={{ display: { xs: "none", lg: "flex" } }} lg={4}>
               <Box className={rightSlideParentBox}>

@@ -8,14 +8,29 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
+import swal from "sweetalert";
 import { useStyles } from "../../../styles/Styles";
 const AddProduct = () => {
   const { outlineButton, categorySelect } = useStyles();
   const [productRating, setProductRating] = React.useState(3.5);
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,reset } = useForm();
   const onSubmit = (data) => {
     data.rating = productRating;
-    console.log(data);
+    fetch("https://blooming-plains-44019.herokuapp.com/products", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.insertedId) {
+        swal("Complete", "Product added to Database!", "success");
+        reset();
+      }
+    })
+    .catch((err) => console.log(err));
   };
   return (
     <Box>
@@ -55,6 +70,15 @@ const AddProduct = () => {
           <TextField
             required
             sx={{ mb: "10px" }}
+            {...register("img", { required: true })}
+            fullWidth
+            id="filled-basic"
+            label="Image URL"
+            variant="filled"
+          />
+          <TextField
+            required
+            sx={{ mb: "10px" }}
             {...register("title", { required: true })}
             fullWidth
             id="filled-basic"
@@ -74,7 +98,7 @@ const AddProduct = () => {
           <TextField
             id="filled-multiline-static"
             label="Description"
-            {...register("info", { required: true })}
+            {...register("des", { required: true })}
             multiline
             fullWidth
             rows={4}
@@ -84,7 +108,7 @@ const AddProduct = () => {
             sx={{ mt: 2 }}
             id="filled-multiline-static"
             label="Second Description"
-            {...register("info", { required: true })}
+            {...register("des2", { required: true })}
             multiline
             fullWidth
             rows={4}

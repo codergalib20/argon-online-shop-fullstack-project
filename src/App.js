@@ -11,6 +11,7 @@ import Login from "./pages/Login/Login";
 import PrivateRoute from "./pages/Login/Private/PrivateRoute";
 import Register from "./pages/Login/Register";
 import NoPage from "./pages/NoPage";
+import AllProducts from "./pages/Products/AllProducts";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -56,9 +57,12 @@ function App() {
               <Route path="/login">
                 <Login />
               </Route>
-              <Route path="/product/:id">
-                <DetailProduct />
+              <Route path="/allProducts">
+                <AllProducts />
               </Route>
+              <PrivateRoute path="/product/:id">
+                <DetailProduct />
+              </PrivateRoute>
               <PrivateRoute path="/dashboard">
                 <ResponsiveDrawer />
               </PrivateRoute>
